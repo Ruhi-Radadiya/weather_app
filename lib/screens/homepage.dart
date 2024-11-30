@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.blue,
                   Colors.black26,
+                  Colors.blue,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -55,10 +55,17 @@ class _HomePageState extends State<HomePage> {
                             ),
                             TextFormField(
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
                               ),
                               controller: searchController,
                               cursorColor: Colors.black,
+                              onFieldSubmitted: (val) {
+                                provider.getData(searchController.text);
+
+                                searchController.clear();
+                              },
                               decoration: InputDecoration(
                                 enabledBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
@@ -124,7 +131,8 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.transparent,
                                 ),
                                 child: Image.network(
-                                  "https://static.vecteezy.com/system/resources/previews/024/825/180/non_2x/3d-weather-icon-day-free-png.png",
+                                  "https:${weather!.current.condition.icon}",
+                                  // "https://static.vecteezy.com/system/resources/previews/024/825/180/non_2x/3d-weather-icon-day-free-png.png"
                                 ),
                               ),
                             ),
